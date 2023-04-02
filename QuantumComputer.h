@@ -36,7 +36,7 @@ void QuantumComputer::LN(Matrix m, int qubit) {
     int degree = log2(m.m);
     Matrix LN = Matrix({{1}}, 1, 1);
     for (int i=0; i<qubits; i++) {
-        if (i+1==qubit) {
+        if (i==qubit) {
             LN = LN%m;
             i+=degree-1;
         } else {
@@ -50,9 +50,11 @@ void QuantumComputer::LN(Matrix m, int qubit) {
 void QuantumComputer::probability() {
     for (int i=0; i<state.m; i++) {
         if (state.mat[i][0] != 0.0) {
-            bitset<10> b(i);
-            string s = b.to_string();
-            s.erase(0, 10-qubits);
+            int n = i;
+            string s;
+            for(int i = 0; i<log2(state.m); i++) {
+                s=(n%2==0 ?"0":"1")+s; n/=2;
+            }
             cout << s << " - ";
             double prob = abs(state.mat[i][0])*abs(state.mat[i][0])*100;
             cout << prob;

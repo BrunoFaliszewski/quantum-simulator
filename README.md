@@ -14,8 +14,8 @@ using namespace std;
 
 int main() {
     QuantumComputer q = QuantumComputer(2);
-    q.LN(q.hadamar, 1);
-    q.LN(q.CX, 1);
+    q.LN(q.hadamar, 0);
+    q.LN(q.CX, 0);
     q.probability();
 
     return 0;
