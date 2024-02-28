@@ -12,6 +12,10 @@ class Matrix {
         void print();
 };
 
+
+/**
+ * Prints human-readable representation of a matrix.
+ */
 void Matrix::print() {
     for (int i=0; i<n; i++) {
         cout << "|";
