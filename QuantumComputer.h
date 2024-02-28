@@ -10,7 +10,7 @@ class QuantumComputer {
     public:
         Matrix state = Matrix({{1}, {0}}, 2, 1);
         int qubits;
-        
+
         QuantumComputer(int qubits_);
         void LO(Matrix m, int qubit);
         void probability();
@@ -40,7 +40,7 @@ QuantumComputer::QuantumComputer(int qubits_) : qubits(qubits_) {
  * @param qubit The index of qubit that the linear operation will be applied on.
  */
 void QuantumComputer::LO(Matrix matrix, int qubit) {
-    int degree = log2(matrix.m);
+    int degree = log2(matrix.n);
     Matrix LO = Matrix({{1}}, 1, 1);
     for (int i=0; i<qubits; i++) {
         if (i==qubit) {
@@ -59,11 +59,11 @@ void QuantumComputer::LO(Matrix matrix, int qubit) {
  *Calculates and prints the probabilities of collapsing to certain states. 
  */
 void QuantumComputer::probability() {
-    for (int i=0; i<state.m; i++) {
+    for (int i=0; i<state.n; i++) {
         if (state.mat[i][0] != 0.0) {
             int n = i;
             string s;
-            for(int i = 0; i<log2(state.m); i++) {
+            for(int i = 0; i<log2(state.n); i++) {
                 s=(n%2==0 ?"0":"1")+s; n/=2;
             }
             cout << s << " - ";
